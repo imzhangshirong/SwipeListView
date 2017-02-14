@@ -1,9 +1,8 @@
 # SwipeListView
 ## 仿qq列表滑动效果，适应效果强，可进行自定义或动态调整抽屉内容。
 
-<video id="video" controls="" preload="none">
-      <source id="mp4" src="device-2017-02-15-034240.mp4" type="video/mp4">
-</video>
+
+<img src="Peek 2017-02-15 04-03.gif" />
 
 ### SwipeListView 公开方法
 - void addSwipeListViewScroll(SwipeListViewScroll swipeListViewScroll)
