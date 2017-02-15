@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/activity_main"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    tools:context="com.sky31.jarvis.swipelistviewdemo.MainActivity">
+    tools:context="com.sky31.zhangshirong.swipelistviewdemo.MainActivity">
 
-    <com.sky31.jarvis.swipelistviewdemo.SwipeListView
+    <com.sky31.zhangshirong.swipelistviewdemo.SwipeListView
         android:splitMotionEvents="false"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:id="@+id/listView"></com.sky31.jarvis.swipelistviewdemo.SwipeListView>
+        android:layout_height="match_parent" android:id="@+id/listView"></com.sky31.zhangshirong.swipelistviewdemo.SwipeListView>
 </RelativeLayout>

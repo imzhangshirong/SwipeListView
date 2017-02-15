@@ -1,4 +1,4 @@
-package com.sky31.jarvis.swipelistviewdemo;
+package com.sky31.zhangshirong.swipelistviewdemo;
 
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
