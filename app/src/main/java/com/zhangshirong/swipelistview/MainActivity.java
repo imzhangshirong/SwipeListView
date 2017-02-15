@@ -1,4 +1,4 @@
-package com.sky31.zhangshirong.swipelistviewdemo;
+package com.zhangshirong.swipelistview;
 
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;

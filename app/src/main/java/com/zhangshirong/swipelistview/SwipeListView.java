@@ -1,4 +1,4 @@
-package com.sky31.zhangshirong.swipelistviewdemo;
+package com.zhangshirong.swipelistview;
 
 import android.content.Context;
 import android.util.AttributeSet;

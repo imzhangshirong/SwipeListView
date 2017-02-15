@@ -1,4 +1,4 @@
-package com.sky31.zhangshirong.swipelistviewdemo;
+package com.zhangshirong.swipelistview;
 
 import org.junit.Test;
 
