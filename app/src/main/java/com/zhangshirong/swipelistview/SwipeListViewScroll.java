@@ -20,6 +20,7 @@ public class SwipeListViewScroll extends HorizontalScrollView{
     private boolean isOpen = false;
     private boolean canSwipe = true;
     private SwipeRefreshLayout swipe = null;
+    private SwipeListView swipeListView = null;
     private int last;
     private View control;
     private boolean willClose=false;
@@ -63,7 +64,7 @@ public class SwipeListViewScroll extends HorizontalScrollView{
         this.setFocusableInTouchMode(true);
         this.setFocusable(true);
         try{
-            SwipeListView swipeListView = (SwipeListView) this.getParent().getParent();
+            swipeListView = (SwipeListView) this.getParent().getParent();
             swipeListView.addSwipeListViewScroll(this);
             LinearLayout layout = (LinearLayout) getChildAt(0);
             control = layout.getChildAt(0);
@@ -94,8 +95,7 @@ public class SwipeListViewScroll extends HorizontalScrollView{
         }
         if(control == null)return;
         try{
-            SwipeListView swipeListView = (SwipeListView) this.getParent().getParent();
-            swipeListView.closeAllSwipeListViewScroll();
+            if(swipeListView!=null)swipeListView.closeAllSwipeListViewScroll();
         }
         catch (Exception e){
             e.printStackTrace();
