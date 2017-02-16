@@ -12,6 +12,7 @@
 ### SwipeListViewScroll 公开方法
 - boolean isOperating()
 - boolean isOpen()
+- void setCanSwipe()
 - void setSwipe(SwipeRefreshLayout swipe)
 - void open()
 - void close()

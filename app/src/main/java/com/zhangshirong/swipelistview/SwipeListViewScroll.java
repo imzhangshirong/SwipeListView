@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 public class SwipeListViewScroll extends HorizontalScrollView{
     private boolean isOperating = false;
     private boolean isOpen = false;
+    private boolean canSwipe = true;
     private SwipeRefreshLayout swipe = null;
     private int last;
     private View control;
@@ -52,7 +53,10 @@ public class SwipeListViewScroll extends HorizontalScrollView{
         super.onLayout(changed, l, t, r, b);
     }
 
-
+    public void setCanSwipe(boolean canSwipe){
+        this.canSwipe = canSwipe;
+        if(!canSwipe && isOpen)close();
+    }
     private void initLayout(final int width){
         this.setHorizontalScrollBarEnabled(false);
         this.setVerticalScrollBarEnabled(false);
@@ -84,6 +88,10 @@ public class SwipeListViewScroll extends HorizontalScrollView{
         isOpen = false;
     }
     public void open(){
+        if(!canSwipe){
+            isOpen = false;
+            return;
+        }
         if(control == null)return;
         try{
             SwipeListView swipeListView = (SwipeListView) this.getParent().getParent();
@@ -97,6 +105,7 @@ public class SwipeListViewScroll extends HorizontalScrollView{
     }
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
+        if(!canSwipe)return false;
         boolean sys = super.onTouchEvent(ev);//先执行系统要处理的，否则无法滚动
         int scrollX = this.getScrollX();
         if(ev.getAction() != MotionEvent.ACTION_MOVE){
