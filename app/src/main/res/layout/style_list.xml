@@ -11,6 +11,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <!--第一个是item主要显示的内容-->
             <LinearLayout
                 android:orientation="vertical"
                 android:padding="10dp"
@@ -34,6 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+            <!--按钮显示的内容-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:orientation="horizontal"

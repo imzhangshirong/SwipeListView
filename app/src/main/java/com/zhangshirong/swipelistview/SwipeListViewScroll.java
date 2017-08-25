@@ -22,10 +22,11 @@ public class SwipeListViewScroll extends HorizontalScrollView{
     private SwipeRefreshLayout swipe = null;
     private SwipeListView swipeListView = null;
     private int last;
-    private View control;
+    private View contentView;
     private boolean willClose=false;
     private int moveWidth = (int) (20*getResources().getDisplayMetrics().density);
-    private int width =0;
+    private int width = 0;
+    private int index = -1;
 
     public SwipeListViewScroll(Context context) {
         super(context);
@@ -67,14 +68,48 @@ public class SwipeListViewScroll extends HorizontalScrollView{
             swipeListView = (SwipeListView) this.getParent().getParent();
             swipeListView.addSwipeListViewScroll(this);
             LinearLayout layout = (LinearLayout) getChildAt(0);
-            control = layout.getChildAt(0);
-            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) control.getLayoutParams();
+            contentView = layout.getChildAt(0);
+            contentView.setFocusable(true);
+            contentView.setClickable(true);
+            contentView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(swipeListView.listener!=null)swipeListView.listener.OnClick(SwipeListViewScroll.this,index);
+                }
+            });
+            contentView.setOnLongClickListener(new OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if(swipeListView.listener!=null){
+                        return swipeListView.listener.OnLongClick(SwipeListViewScroll.this,index);
+                    }
+                    return false;
+                }
+            });
+            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) contentView.getLayoutParams();
             lp.width = width;
-            control.setLayoutParams(lp);
+            contentView.setLayoutParams(lp);
+            if(swipeListView.controlIds != null){
+                for(int i = 0;i<swipeListView.controlIds.length;i++){
+                    final int key = swipeListView.controlIds[i];
+                    View view = layout.findViewById(key);
+                    view.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(swipeListView.listener!=null){
+                                swipeListView.listener.OnControlClick(key,v,index);
+                            }
+                        }
+                    });
+                }
+            }
         }
         catch (Exception e){
             e.printStackTrace();
         }
+    }
+    protected void setIndex(int index){
+        this.index = index;
     }
     @Override
     protected void onDraw(Canvas canvas) {
@@ -93,14 +128,14 @@ public class SwipeListViewScroll extends HorizontalScrollView{
             isOpen = false;
             return;
         }
-        if(control == null)return;
+        if(contentView == null)return;
         try{
             if(swipeListView!=null)swipeListView.closeAllSwipeListViewScroll();
         }
         catch (Exception e){
             e.printStackTrace();
         }
-        this.smoothScrollTo(control.getWidth(),0);
+        this.smoothScrollTo(contentView.getWidth(),0);
         isOpen = true;
     }
     @Override
