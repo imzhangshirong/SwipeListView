@@ -6,20 +6,69 @@
 
 
 ### 使用说明
-- 1、建立列表项Layout文件，基本要求如下（简单举例，详细参考Demo）<br><pre>
-&lt;SwipeListViewScroll&gt;<br>
-    &lt;LinearLayout&gt;<br>
-        &lt;LinearLayout&gt;<br>
-            &lt;!--&gt;列表主题内容&lt;--&gt;
-        &lt;/LinearLayout&gt;<br>
-        &lt;LinearLayout&gt;<br>
-            &lt;!--&gt;操作的滑动抽屉菜单按钮&lt;--&gt;
-        &lt;/LinearLayout&gt;<br>
-    &lt;/LinearLayout&gt;<br>
-&lt;/SwipeListViewScroll&gt;</pre>
+- 1、建立列表项Layout文件，基本要求如下（简单举例，详细参考Demo）
+```html
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.zhangshirong.swipelistview.SwipeListViewScroll
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--第一个是item主要显示的内容-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/name"
+                    android:text="Hello"
+                    android:gravity="center_vertical"
+                    android:height="30dp"
+                    android:textSize="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/desc"
+                    android:text="Hello"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:height="20dp"
 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <!--按钮显示的内容-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/modify"
+                    android:text="Modify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+                <Button
+                    android:id="@+id/delete"
+                    android:text="Delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </com.zhangshirong.swipelistview.SwipeListViewScroll>
+</LinearLayout>
+```
 - 2、在Activity Layout里使用SwipeListView
-- 3、SwipeListView使用SetListener进行相关的Item事件和控制按钮事件的注册<br><pre>
+- 3、SwipeListView使用SetListener进行相关的Item事件和控制按钮事件的注册
+```java
 listView.setListener(new OnSwipeListItemClickListener() {
             @Override
             public void OnClick(View view, int index) {
@@ -42,9 +91,9 @@ listView.setListener(new OnSwipeListItemClickListener() {
                 }
             }
         },new int[]{R.id.modify,R.id.delete});//按钮view的id
-</pre>
-
-- 4、设置ListAdapter（继承自SwipeListAdapter）具体使用如下（请参考案例）<br><pre>
+```
+- 4、设置ListAdapter（继承自SwipeListAdapter）具体使用如下（请参考案例）
+```java
 class ListAdapter extends com.zhangshirong.swipelistview.SwipeListAdapter {
         private ArrayList<Info> listData;
         public ListAdapter(ArrayList<Info> listData){
@@ -82,4 +131,4 @@ class ListAdapter extends com.zhangshirong.swipelistview.SwipeListAdapter {
             return super.bindView(position, convertView);
         }
     }
-</pre>
+```
